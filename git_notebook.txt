@@ -1,0 +1,80 @@
+工作区 --推送--> 版本库（缓存区，分支）
+
+git branch -a (check all remote branch)
+
+git branch (check local branch)
+
+git push origin [local new branch name] (push local new branch name to remote)
+
+git checkout [branch name] (switch branch)
+
+git branch -d [branch name] (delete branch)
+git push origin :[branch name] (delete remote branch)
+
+git add . (put modified files of work area into cache area)
+git status
+git commit -m ''
+git push origin [branch name]
+
+git diff [file] (check difference)
+
+git log (check submit log)
+git log --pretty=oneline
+git reflog (get all command log)
+
+git reset --hard HEAD~[backward number] (rollback version)
+git reset --hard [commit id] (come to the specific version)
+
+
+cat [file] (check file content)
+
+git checkout -- file (file roll back to the status of last add/commit in the work area)
+git reset HEAD file (remove modified file from cache)
+
+rm [file](remove file from local)
+git checkout -- [file] (cancel delet action)
+git rm [file] (remove file)
+
+git rm --cached <file>(remove file of cache)
+
+git merge [branch] (merge branch to current branch)
+git merge --no-ff -m "...comments..." [branch] (merge branch without fast forward)
+
+git branch -d [branch] (delete branch)
+
+git branch -D [branch] (delete an unmerged branch)
+
+git log --graph --pretty=oneline --abbrev-commit(check merge branches graph)
+
+git stash (save work directory)
+git stash list(check saved work directory)
+
+git stash apply stash@{[id]}
+git stash drop stash@{[id]}(get stash and drop stash)
+or
+git stash pop (get last stash and remove)(self PS: saved stash like stack)
+
+git remote(check remote repository info)
+
+git checkout -b [branch] origin/[branch] (create local branch from remote branch)
+
+git branch --set-upstream [branch] origin/[branch] (build connection between local branch and remote branch)
+
+git tag [version number](create tag)
+git tag (check)
+git show [tag name] (show tag info)
+git tag -a [tag name] -m "...description..." [commit id] (create a tag with description)
+
+git tag -d [tag name] (delete local tag)
+git push orign :refs/tags/[tag name] (delete remote tag, have to delete local tag firstly)
+
+git push origin [tag name] (push tag to remote)
+git push origin --tags (push all tags)
+
+git add -f [file] (push file without ignore config)
+git check-ignore -v [file] (check the ignore rule)
+
+
+git fetch origin [branch]                \
+git log -p [branch]..origin/[branch]     ---> == git pull origin [branch]  
+git merge origin/[branch]                /
