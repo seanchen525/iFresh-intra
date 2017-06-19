@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Greeter from '../container/greet.js';
+import '../css/base.css';
 
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('root')
+    <Greeter />, document.getElementById('root')
 );
