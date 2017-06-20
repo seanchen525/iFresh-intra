@@ -13,12 +13,9 @@ module.exports = {
         loaders: [
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
             { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/},
-            // {
-            //     test: /\.css$/,
-            //     loader: 'style-loader!css-loader?modules'
-            // },
             {
                 test: /\.css$/,
+                // exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
                     fallback: [{
                         loader: 'style-loader',
@@ -27,12 +24,20 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: true,
-                            localIdentName: '[name]__[local]--[hash:base64:5]',
+                            // localIdentName: '[name]__[local]--[hash:base64:5]',
+                            localIdentName: '[local]'
                         },
-                    }],
+                    },
+                    {loader: 'postcss-loader', options: { plugins: () => [ require('precss'), require('autoprefixer') ] }}, 
+                    'sass-loader'],
                 })
             },
-            { test: /\.json$/, loader: 'json-loader'}
+            { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
+            { test: /\.json$/, loader: 'json-loader'},
+            { 
+                test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+                use: "url-loader?limit=100000"
+            }
         ]
     },
     plugins: [
@@ -42,13 +47,13 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin(),
         // new webpack.HotModuleReplacementPlugin(),
         
-        // new webpack.LoaderOptionsPlugin({
-        //     options: {
-        //         postcss: [
-        //             require("autoprefixer")
-        //         ]
-        //     }
-        // })
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [
+                    require("autoprefixer")
+                ]
+            }
+        })
     ],
     devServer: {
         contentBase: "./dist",
